@@ -114,7 +114,7 @@ export default class Game extends React.Component {
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck,
                   discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards,
+                  playedcards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
 
               })
@@ -233,7 +233,7 @@ export default class Game extends React.Component {
       {this.state.gameClass && <Scoreboard game={this.state} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
-      {this.state.gameClass && <PlayedCards /> }
+      {this.state.gameClass && <PlayedCards playedCards={this.state.playedcards}/> }
       </div>
     )
   }
