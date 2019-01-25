@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class Scoreboard extends React.Component {
-  constructor(props){
-    super(props);
-  }
   render(){
     console.log("props:",this.props.game)
     return(

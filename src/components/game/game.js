@@ -29,7 +29,8 @@ export default class Game extends React.Component {
         name: 'Steve',
         active: '0',
         hand: [{color: 'orange', number: '1', hints:[]},{color: 'blue', number: '2', hints:[]},{color: 'black', number: '3', hints:[]},{color: 'red', number: '4', hints:[]},{color: 'white', number: '5', hints:[]}]
-      }]
+      }],
+      userName: null //This is Set by the Browser 
     }
   }
   render(){

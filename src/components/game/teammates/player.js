@@ -2,9 +2,6 @@ import React from 'react';
 import Card from './hand.js';
 
 export default class Player extends React.Component {
-  constructor(props){
-    super(props);
-  }
   render(){
     console.log("player props", this.props)
     return(

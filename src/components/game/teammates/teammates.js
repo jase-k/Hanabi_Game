@@ -16,7 +16,7 @@ export default class Teammates extends React.Component {
         {
           this.state.players.map(player => <Player player={player} />)
         }
-
+        
      </div>
     )
   }

@@ -7,9 +7,9 @@ export default class FirstStep extends React.Component {
   }
   render(){
     return(
-      <div className="vertical_flex">
+      <div className={this.props.class}>
        <div className='center'>
-          <button id="newGame">
+          <button id="newGame" onClick={this.props.hide}>
           New Game
         </button>
      </div>
