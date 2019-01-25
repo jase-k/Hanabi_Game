@@ -2,6 +2,7 @@
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 0 0;
+  width: 100%;
 }
 header{
   width: 100%;
@@ -13,18 +14,22 @@ h1 {
   background-color: red;
   height: 2rem;
   width: 100%;
-  margin: 0 0;
+  margin: 0 auto;
   padding: 20px;
   text-align: center;
 }
 h2{
   text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 3px;
 }
 h3{
-  font-size: .8rem;
+  font-size: 1rem;
   padding-top: 3px;
   padding-bottom: 3px;
-  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: auto auto;
 }
 h4{
   font-size: .7rem;
@@ -58,16 +63,65 @@ input {
   height: 1.3rem;
   margin: auto 10px;
 }
-.vertical_flex{
-  display: flex;
+.card {
+  height: 400px;
+  width: 600px;
+  border: 2px solid black;
   flex-direction: column;
- justify-content: center;
+  text-align: center;
+  background-color: black;
+  color: white;
 }
+.card-holder {
+  justify-content: space-around;
+  width: 100%;
+}
+
 .center{
   margin: auto;
 }
+
+.flex{
+  display: flex;
+  justify-content: space-around;
+  align-content: flex-start;
+}
+
 .hide{
   display: none
+}
+.instructions {
+  min-width: 500px;
+  border: 5px solid red;
+}
+.notes {
+  border: 1px solid blue;
+}
+
+.notes {
+  height: 500px;
+  background-color: rgb(256, 250, 200);
+  color: black;
+  font-size: 1.5rem;
+  display: block;
+}
+
+.option-holder{
+  height: auto;
+  background-color: rgb(256, 250, 200);
+  color: black;
+  font-size: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.scoreboard{
+  border: 2px solid black;
+}
+.scoreboard div{
+  width: 33%;
+  border: 1px solid red;
 }
 
 .teamatesContainer{
@@ -88,51 +142,20 @@ input {
   border: 0.5px dashed green;
 }
 
-.card {
-  height: 400px;
-  width: 600px;
-  border: 2px solid black;
+.vertical_flex{
+  display: flex;
   flex-direction: column;
-  text-align: center;
-  background-color: black;
-  color: white;
-}
-.card-holder {
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
 }
 
-.notes {
-  border: 1px solid blue;
-}
-
-.notes {
-  height: 500px;
-  background-color: rgb(256, 250, 200);
-  color: black;
-  font-size: 1.5rem;
-  display: block;
-
-}
 .writing {
  line-height: 1.1em;
 }
 
-.option-holder{
-  height: auto;
-  background-color: rgb(256, 250, 200);
-  color: black;
-  font-size: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.instructions {
-  min-width: 500px;
-  border: 5px solid red;
-}
-
 #firstStep{
     flex-direction: column;
+}
+
+#root{
+  width: 100%;
 }
