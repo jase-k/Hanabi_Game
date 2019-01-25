@@ -11,7 +11,7 @@ export default class DiscardCard extends React.Component{
               this.props.cards.map((card, index) => <option value={index}>Card {index+1}</option>)
             }
         </select>
-        <button id="discard_card_button">Submit</button>
+        <button id="discard_card_button" onClick={this.props.handleEvent}>Submit</button>
       </div>
     )
   }

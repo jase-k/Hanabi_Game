@@ -44,6 +44,8 @@ export default class Game extends React.Component {
     this.startNewGame = this.startNewGame.bind(this);
     this.setUserName = this.setUserName.bind(this);
     this.joinGame = this.joinGame.bind(this);
+    this.discardCard = this.discardCard.bind(this);
+    this.giveHint = this.giveHint.bind(this);
   }
   setUserName(name){
     this.setState({userName: name})
@@ -120,6 +122,69 @@ export default class Game extends React.Component {
     xhr.open('GET', url)
     xhr.send()
   }
+  discardCard(){
+    var cardIndex = document.getElementById('discard_option').value
+      console.log("discard Card Index Value", cardIndex)
+    const xhr = new XMLHttpRequest();
+    var url = 'https://puddle-catcher.glitch.me/game/'
+        url += this.state.id
+        url += '/'+this.state.userName
+        url += '/discard?cardIndex='
+        url += cardIndex
+            console.log(url)
+    xhr.responseType ="json";
+    xhr.onreadystatechange = () =>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            console.log(xhr.response)
+              this.setState({
+                  id: xhr.response.id,
+                  score: xhr.response.score,
+                  hintsLeft: xhr.response.hintsLeft,
+                  livesLeft: xhr.response.livesLeft,
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedcards: xhr.response.playedCards,
+                  players: xhr.response.players,
+              })
+            }
+        }
+    xhr.open('GET', url)
+    xhr.send()
+  }
+  giveHint(){
+    const playerSelect = document.getElementById('player');
+    const hintSelect = document.getElementById('hint_options');
+
+   const xhr = new XMLHttpRequest();
+    var url = 'https://puddle-catcher.glitch.me/game/'
+        url += this.state.id
+        url += '/'+this.state.userName
+        url += '/givehint?player='
+        url += playerSelect.value
+        url += '&hint='
+        url += hintSelect.value
+
+            console.log(url)
+
+    xhr.responseType ="json";
+    xhr.onreadystatechange = () =>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            console.log(xhr.response)
+              this.setState({
+                  id: xhr.response.id,
+                  score: xhr.response.score,
+                  hintsLeft: xhr.response.hintsLeft,
+                  livesLeft: xhr.response.livesLeft,
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedcards: xhr.response.playedCards,
+                  players: xhr.response.players,
+              })
+            }
+        }
+    xhr.open('GET', url)
+    xhr.send()
+  }
   render(){
 
   var active = true
@@ -134,7 +199,7 @@ export default class Game extends React.Component {
       <div className="game-container">
         Game Id = {this.state.id}
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
-      {this.state.gameClass && active && <Play players={this.state.players} userName={this.state.userName} /> }
+      {this.state.gameClass && active && <Play giveHint={this.giveHint} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard game={this.state} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
