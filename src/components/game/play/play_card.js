@@ -10,7 +10,7 @@ export default class PlayCard extends React.Component{
                 this.props.cards.map((card, index) => <option value={index}>Card {index+1}</option>)
               }
           </select>
-          <button id="play_card_button" onClick={this.props.handleEvent}>Submit</button>
+          <button id="play_card_button" onClick={this.props.playCard}>Submit</button>
         </div>
     )
   }

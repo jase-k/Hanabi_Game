@@ -46,6 +46,7 @@ export default class Game extends React.Component {
     this.joinGame = this.joinGame.bind(this);
     this.discardCard = this.discardCard.bind(this);
     this.giveHint = this.giveHint.bind(this);
+    this.playCard = this.playCard.bind(this);
   }
   setUserName(name){
     this.setState({userName: name})
@@ -151,6 +152,35 @@ export default class Game extends React.Component {
     xhr.open('GET', url)
     xhr.send()
   }
+  playCard(){
+    var cardIndex = document.getElementById('playcard_option').value
+      console.log("PlayCard Index Value", cardIndex)
+    const xhr = new XMLHttpRequest();
+    var url = 'https://puddle-catcher.glitch.me/game/'
+        url += this.state.id
+        url += '/'+this.state.userName
+        url += '/playcard?cardIndex='
+        url += cardIndex
+            console.log(url)
+    xhr.responseType ="json";
+    xhr.onreadystatechange = () =>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            console.log(xhr.response)
+              this.setState({
+                  id: xhr.response.id,
+                  score: xhr.response.score,
+                  hintsLeft: xhr.response.hintsLeft,
+                  livesLeft: xhr.response.livesLeft,
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedcards: xhr.response.playedCards,
+                  players: xhr.response.players,
+              })
+            }
+        }
+    xhr.open('GET', url)
+    xhr.send()
+  }
   giveHint(){
     const playerSelect = document.getElementById('player');
     const hintSelect = document.getElementById('hint_options');
@@ -199,7 +229,7 @@ export default class Game extends React.Component {
       <div className="game-container">
         Game Id = {this.state.id}
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
-      {this.state.gameClass && active && <Play giveHint={this.giveHint} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
+      {this.state.gameClass && active && <Play playCard={this.playCard} giveHint={this.giveHint} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard game={this.state} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
