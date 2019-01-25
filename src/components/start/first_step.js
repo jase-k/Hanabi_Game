@@ -1,13 +1,10 @@
 import React from 'react';
 
 export default class FirstStep extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {};
-  }
   render(){
+    console.log("FirstStep Props:",this.props)
     return(
-      <div className={this.props.class}>
+      <div className="vertical_flex">
        <div className='center'>
           <button id="newGame" onClick={this.props.hide}>
           New Game
@@ -19,9 +16,9 @@ export default class FirstStep extends React.Component {
         </h3>
       </div>
       <div className='vertical_flex'>
-        <input className='center' type="text" name="JoinNameInput" placeholder="Type Name Here"/>
-        <input className='center' type="text" name="GameId" placeholder="Type Game Id Here" />
-        <button id="joinGame" className='center'>
+        <input id="name_input" className='center' type="text" name="JoinNameInput" placeholder="Type Name Here"/>
+        <input id="gameId_input" className='center' type="text" name="GameId" placeholder="Type Game Id Here" />
+        <button id="joinGame" className='center' onClick={this.props.handleJoinGame}>
           Join Game
         </button>
         </div>

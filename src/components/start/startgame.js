@@ -6,24 +6,22 @@ export default class StartGame extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      FirstStepClass: "vertical_flex",
-      NewGameClass: "hide"
+      hide: true,
     }
     this.toggleHide = this.toggleHide.bind(this)
   }
   toggleHide(){
-    if(this.state.FirstStepClass == "vertical_flex"){
+    console.log("toggleHide")
       this.setState({
-        FirstStepClass: "hide",
-        NewGameClass: "vertical_flex"
-      })
-    }
+        hide: false,
+    })
   }
   render(){
+    console.log("StartGame Props", this.props)
     return(
     <div id="game-init" className="game-init">
-      <FirstStep hide={this.toggleHide} class={this.state.FirstStepClass} />
-      <NewGame class={this.state.NewGameClass}/>
+      {this.state.hide && <FirstStep hide={this.toggleHide} handleJoinGame={this.props.joingame} /> }
+      {!this.state.hide && <NewGame class={this.state.NewGameClass} clickHandler={this.props.newgame}/>}
     </div>
     )
   }

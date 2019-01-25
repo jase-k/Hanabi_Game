@@ -18,7 +18,7 @@ export default class NewGame extends React.Component {
           </select>
           <input type="text" id="nameInput" placeholder="Type in Your Name HERE"/>
       </div>
-      <button id="startGame">
+      <button id="startGame" onClick={this.props.clickHandler}>
           Start Game
         </button>
     </div>
