@@ -2,15 +2,14 @@ import React from 'react';
 
 export default class DiscardCard extends React.Component{
   render(){
+    console.log("DiscardCard Props", this.props)
     return(
       <div>
         <h3>Pick the Card to Discard</h3>
-        <select>
-            <option value="0">Card 1</option>
-            <option value="1">Card 2</option>
-            <option value="2">Card 3</option>
-            <option value="3">Card 4</option>
-            <option value="4">Card 5</option>
+        <select id="discard_option">
+            {
+              this.props.cards.map((card, index) => <option value={index}>Card {index+1}</option>)
+            }
         </select>
         <button id="discard_card_button">Submit</button>
       </div>

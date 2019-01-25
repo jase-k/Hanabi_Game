@@ -36,7 +36,7 @@ export default class Play extends React.Component {
     return(
       <div className="flex">
         {!this.state.give_hint && !this.state.play_card && <button id="discard_card" onClick={(e) => this.showOptions(e)}>Discard Card</button> }
-        {this.state.discard_card && <DiscardCard /> }
+        {this.state.discard_card && <DiscardCard cards={this.props.players[0].hand} /> }
         {!this.state.discard_card && !this.state.play_card && <button id="give_hint" onClick={(e) => this.showOptions(e)}>Give Hint</button> }
         {this.state.give_hint && <GiveHint />}
         {!this.state.give_hint && !this.state.discard_card && <button id="play_card" onClick={(e) => this.showOptions(e)}>Play Card</button> }

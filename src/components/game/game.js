@@ -76,8 +76,8 @@ export default class Game extends React.Component {
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards,
                   players: xhr.response.players,
-
               })
+
             }
         }
     xhr.open('GET', url)
@@ -121,11 +121,20 @@ export default class Game extends React.Component {
     xhr.send()
   }
   render(){
+
+  var active = true
+  for(var i = 0; i < this.state.players.length; i++){
+    if(!this.state.players[i].name){ active = false}
+  }
+  var index = this.state.players.findIndex(player =>  player.name === this.state.userName)
+  if(!this.state.players[index].active){ active = false}
+  console.log("Index", index)
+  console.log("Active", active)
     return(
       <div className="game-container">
         Game Id = {this.state.id}
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
-      {this.state.gameClass &&  <Play players={this.state.players} userName={this.state.userName} /> }
+      {this.state.gameClass && active && <Play players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard game={this.state} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
