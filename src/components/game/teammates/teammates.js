@@ -2,21 +2,14 @@ import React from 'react';
 import Player from './player.js'
 
 export default class Teammates extends React.Component {
-  constructor(props){
-    super(props);
-    this.state  = {
-      players: this.props.game.players
-    }
-  }
-
   render(){
-    console.log("numberOfPlayers", this.state.numberOfPlayers)
+    console.log("teammates props", this.props)
     return(
   <div id="teamateContainer" className="flex">
         {
-          this.state.players.map(player => <Player player={player} />)
+          this.props.players.filter(player => player.name !== this.props.userName).map(player => <Player player={player} />)
         }
-        
+
      </div>
     )
   }
