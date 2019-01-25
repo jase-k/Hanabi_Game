@@ -125,7 +125,7 @@ export default class Game extends React.Component {
       <div className="game-container">
         Game Id = {this.state.id}
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
-      {this.state.gameClass &&  <Play /> }
+      {this.state.gameClass &&  <Play players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard game={this.state} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }

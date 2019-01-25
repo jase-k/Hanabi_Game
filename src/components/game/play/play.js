@@ -1,30 +1,46 @@
 import React from 'react';
 
 //components
-//import DiscardCard from './discard_card.js'
-//import GiveHint from './give_hint.js'
-//import PlayCard from './play_card.js'
+import DiscardCard from './discard_card.js'
+import GiveHint from './give_hint.js'
+import PlayCard from './play_card.js'
 
 export default class Play extends React.Component {
   constructor(props){
     super(props)
+    this.showOptions = this.showOptions.bind(this);
     this.state ={
       give_hint: false,
       discard_card: false,
       play_card: false
     };
-    this.showOptions = this.showOptions.bind(this)
   }
-  showOptions(){
-    console.log( "")
-    console.log("Button was Clicked!")
+  showOptions(e){
+    console.log(e.target.id)
+    var state = e.target.id
+    if(state == 'give_hint'){this.setState({
+        give_hint : !this.state.give_hint
+    })
   }
+    if(state == 'discard_card'){this.setState({
+        discard_card : !this.state.discard_card
+    })
+  }
+    if(state == 'play_card'){this.setState({
+        play_card : !this.state.play_card
+    })
+  }
+}
   render(){
+    console.log("Play's Props:", this.props)
     return(
       <div className="flex">
-        <button id="discard_card" onClick={this.showOptions}>Discard Card</button>
-        <button id="give_hint">Give Hint</button>
-        <button id="play_card">Play Card</button>
+        {!this.state.give_hint && !this.state.play_card && <button id="discard_card" onClick={(e) => this.showOptions(e)}>Discard Card</button> }
+        {this.state.discard_card && <DiscardCard /> }
+        {!this.state.discard_card && !this.state.play_card && <button id="give_hint" onClick={(e) => this.showOptions(e)}>Give Hint</button> }
+        {this.state.give_hint && <GiveHint />}
+        {!this.state.give_hint && !this.state.discard_card && <button id="play_card" onClick={(e) => this.showOptions(e)}>Play Card</button> }
+        {this.state.play_card && <PlayCard />}
       </div>
     )
   }
