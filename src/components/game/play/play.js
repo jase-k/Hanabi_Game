@@ -38,7 +38,7 @@ export default class Play extends React.Component {
         {!this.state.give_hint && !this.state.play_card && <button id="discard_card" onClick={(e) => this.showOptions(e)}>Discard Card</button> }
         {this.state.discard_card && <DiscardCard handleEvent={this.props.discard} cards={this.props.players[0].hand} /> }
         {!this.state.discard_card && !this.state.play_card && <button id="give_hint" onClick={(e) => this.showOptions(e)}>Give Hint</button> }
-        {this.state.give_hint && <GiveHint giveHint={this.props.giveHint} players={this.props.players} />}
+        {this.state.give_hint && this.props.hints && <GiveHint giveHint={this.props.giveHint} players={this.props.players} />}
         {!this.state.give_hint && !this.state.discard_card && <button id="play_card" onClick={(e) => this.showOptions(e)}>Play Card</button> }
         {this.state.play_card && <PlayCard playCard={this.props.playCard} cards={this.props.players[0].hand}/>}
       </div>

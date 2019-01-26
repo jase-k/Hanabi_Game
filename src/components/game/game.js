@@ -16,28 +16,13 @@ export default class Game extends React.Component {
       id: null,
       score: 0,
       dateCreated: null,
-      hintsLeft: 9,
-      livesLeft: 3,
-      playingDeck: [{color: 'orange', number: '1', hints:[]},{color: 'blue', number: '2', hints:[]},{color: 'black', number: '3', hints:[]},{color: 'red', number: '4', hints:[]},{color: 'white', number: '5', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]},{color: 'orange', number: '1', hints:[]}],
+      hintsLeft: 0,
+      livesLeft: 0,
+      playingDeck: [],
       discardedCards: [],
       playedcards: [],
-      players: [{
-        id: '1',
-        name: 'Jase',
-        active: '1',
-        hand:[{color: 'orange', number: '1', hints:["Not Red", "1"]},{color: 'blue', number: '2', hints:["Not Red", "Not 1"]},{color: 'black', number: '3', hints:["Not Red", "Not 1"]},{color: 'red', number: '4', hints:["Red", "Not 1"]},{color: 'white', number: '5', hints:["Not Red", "Not 4", "Not Blue"]}]
-      },{
-        id: '2',
-        name: 'Jane Doe',
-        active: '0',
-        hand: [{color: 'orange', number: '1', hints:[]},{color: 'blue', number: '2', hints:[]},{color: 'black', number: '3', hints:[]},{color: 'red', number: '4', hints:[]},{color: 'white', number: '5', hints:[]}]
-      },{
-        id: '3',
-        name: 'Billy',
-        active: '0',
-        hand: [{color: 'green', number: '1', hints:[]},{color: 'blue', number: '2', hints:[]},{color: 'black', number: '3', hints:[]},{color: 'red', number: '4', hints:[]},{color: 'white', number: '5', hints:[]}]
-      }],
-      userName: "Jase", //This is Set by the Browser
+      players: [{"name": "Jase Kraft", "active": false}],
+      userName: "Jase Kraft", //This is Set by the Browser
       startGameClass: "game-init",
       gameClass: false,
     };
@@ -101,6 +86,10 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
+          if(xhr.response.message === "Name Not Found in the Game!"){
+            alert(xhr.response.message);
+            return;
+          }
             var game = xhr.response
               this.setState({
                   userName: name.value,
@@ -114,7 +103,6 @@ export default class Game extends React.Component {
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
-
               })
             }
         }
@@ -242,7 +230,7 @@ export default class Game extends React.Component {
         }
     xhr.open('GET', url)
     xhr.send()
-    }
+  }Jase
   render(){
 
   var active = true
@@ -250,14 +238,16 @@ export default class Game extends React.Component {
     if(!this.state.players[i].name){ active = false}
   }
   var index = this.state.players.findIndex(player =>  player.name === this.state.userName)
-  if(!this.state.players[index].active){ active = false}
+  if(this.state.players[index]){
+    if(!this.state.players[index].active){ active = false}
+}
   console.log("Index", index)
   console.log("Active", active)
     return(
       <div className="game-container">
         Game Id = {this.state.id}
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
-      {this.state.gameClass && active && <Play playCard={this.playCard} giveHint={this.giveHint} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
+      {this.state.gameClass && active && <Play playCard={this.playCard} giveHint={this.giveHint} hints={this.state.hintsLeft} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard game={this.state} update={this.getUpdate} /> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
