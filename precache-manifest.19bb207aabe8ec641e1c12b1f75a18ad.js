@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/Hanabi_Game/static/js/runtime~main.44fe9ec3.js"
   },
   {
-    "revision": "832a2413c4509d59a22b",
-    "url": "/Hanabi_Game/static/js/main.832a2413.chunk.js"
+    "revision": "3e2652848b13b4fed607",
+    "url": "/Hanabi_Game/static/js/main.3e265284.chunk.js"
   },
   {
     "revision": "07140812a98c93f90dd2",
     "url": "/Hanabi_Game/static/js/1.07140812.chunk.js"
   },
   {
-    "revision": "832a2413c4509d59a22b",
+    "revision": "3e2652848b13b4fed607",
     "url": "/Hanabi_Game/static/css/main.6b6f23c2.chunk.css"
   },
   {
-    "revision": "bc06974e8926bdf56e366bb9890981a7",
+    "revision": "08b6ba520a860eaa0230888e1e84a486",
     "url": "/Hanabi_Game/index.html"
   }
 ];
