@@ -102,14 +102,12 @@ export default class Game extends React.Component {
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
             var game = xhr.response
-            console.log("Game Score", game["score"])
-            console.log(typeof game)
               this.setState({
                   userName: name.value,
                   startGameClass: "hide",
                   gameClass: true,
                   id: xhr.response.id,
-                  score: xhr.response.playingDeck.filter(card => card).length,
+                  score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck,
@@ -231,7 +229,7 @@ export default class Game extends React.Component {
                   startGameClass: "hide",
                   gameClass: true,
                   id: xhr.response.id,
-                  score: xhr.response.playingDeck.filter(card => card).length,
+                  score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck,

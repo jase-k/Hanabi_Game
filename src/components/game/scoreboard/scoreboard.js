@@ -1,8 +1,10 @@
 import React from 'react';
 
 export default class Scoreboard extends React.Component {
+  componentWillMount(){
+    setInterval(this.props.update, 5000);    
+  }
   render(){
-//    setInterval(this.props.update, 5000);
     console.log("props:",this.props.game)
     return(
       <div className="scoreboard flex">
