@@ -2,6 +2,7 @@
   "name": "hanabi",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jase-k.github.io/Hanabi_Game/"
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
