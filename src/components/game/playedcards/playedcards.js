@@ -2,23 +2,22 @@ import React from 'react';
 
 export default class PlayedCards extends React.Component {
   render(){
-    var array = this.props.playedCards
+    var array = this.props.playedCards.filter(card => card)
     console.log(array)
-    var black = Math.max.apply(Math, array.filter(object => object.color == 'black').map(function(o){return o.number}))
-      if(black == -Infinity){black = 0}
-      array = this.props.playedCards
-    var blue = Math.max.apply(Math, array.filter(object => object.color == 'blue').map(function(o){return o.number}))
-      if(blue == -Infinity){blue = 0}
-      array = this.props.playedCards
-      console.log(array)
-    var orange = Math.max.apply(Math, array.filter(object => object.color == 'orange').map(function(o){return o.number}))
-      if(orange == -Infinity){orange = 0}
-      array = this.props.playedCards
-    var red = Math.max.apply(Math, array.filter(object => object.color == 'red').map(function(o){return o.number}))
-      if(red == -Infinity){red = 0}
-      array = this.props.playedCards
-    var white = Math.max.apply(Math, array.filter(object => object.color == 'white').map(function(o){return o.number}))
-        if(white == -Infinity){white = 0}
+    var black = Math.max.apply(Math, array.filter(object => object.color === 'black').map(function(o){return o.number}))
+      if(black === -Infinity){black = 0}
+
+    var blue = Math.max.apply(Math, array.filter(object => object.color === 'blue').map(function(o){return o.number}))
+      if(blue === -Infinity){blue = 0}
+
+     var orange = Math.max.apply(Math, array.filter(object => object.color === 'orange').map(function(o){return o.number}))
+      if(orange === -Infinity){orange = 0}
+
+    var red = Math.max.apply(Math, array.filter(object => object.color === 'red').map(function(o){return o.number}))
+      if(red === -Infinity){red = 0}
+
+    var white = Math.max.apply(Math, array.filter(object => object.color === 'white').map(function(o){return o.number}))
+        if(white === -Infinity){white = 0}
 
     return(
       <div className="flex">

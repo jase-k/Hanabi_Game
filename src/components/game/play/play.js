@@ -18,15 +18,15 @@ export default class Play extends React.Component {
   showOptions(e){
     console.log(e.target.id)
     var state = e.target.id
-    if(state == 'give_hint'){this.setState({
+    if(state === 'give_hint'){this.setState({
         give_hint : !this.state.give_hint
     })
   }
-    if(state == 'discard_card'){this.setState({
+    if(state === 'discard_card'){this.setState({
         discard_card : !this.state.discard_card
     })
   }
-    if(state == 'play_card'){this.setState({
+    if(state === 'play_card'){this.setState({
         play_card : !this.state.play_card
     })
   }
