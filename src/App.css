@@ -38,13 +38,10 @@ h4{
   margin: 0 auto;
 }
 p {
-  display: inline-flex;
-  max-width: 150px;
   margin: 5px;
-  padding: 2px;
-  max-height: 1.2em;
-  flex-wrap: wrap;
+  padding: 2px 0px;
   font-size: 0.9rem;
+  text-align: center;
 }
 div {
   max-width: 100%;
@@ -142,7 +139,17 @@ input {
   text-align: center;
   border: 0.5px dashed green;
 }
-
+.teammates_hint_card{
+  min-width: 20%;
+  background-color: #7FFA90;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.teammates_hint_card h3{
+  margin: 3px auto;
+}
 .vertical_flex{
   display: flex;
   flex-direction: column;
