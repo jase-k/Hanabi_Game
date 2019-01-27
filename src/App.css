@@ -92,6 +92,10 @@ input {
   min-width: 500px;
   border: 5px solid red;
 }
+.name{
+  width: 100%;
+  background-color: aqua;
+}
 .notes {
   border: 1px solid blue;
 }

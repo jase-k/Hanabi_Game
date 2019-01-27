@@ -1,17 +1,24 @@
 import React from 'react';
 
-export default class TeammatesHints extends React.Component {
+export default class TeammatesHints extends React.Component{
   render(){
-    console.log("user's cards:", this.props.players.filter(player => player.name === this.props.userName)[0].hand.map(card => <UserCard card={card} /> ));
-    var hand = this.props.players.filter(player => player.name === this.props.userName);
-    hand[0].hand.map(card => console.log(card))
-    console.log(hand);
+
+    console.log("Teammates Hints Props:", this.props)
+
     return(
-  <div id="cardHolder" className="card-holder flex">
+    <div  className="teammates_hint_card">
+      <h3>
+        Card {this.props.index}
+      </h3>
+      <div className="">
+        <h4>
+          Hints Given
+        </h4>
       {
-      hand[0].hand.filter(card => card !== null).map((card, index) => <UserCard key={index} card={card} />)
+        this.props.card.hints.map(hint => <p>{hint}</p>)
       }
-   </div>
-    )
+      </div>
+    </div>
+  )
   }
 }
