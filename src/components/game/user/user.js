@@ -10,7 +10,7 @@ export default class User extends React.Component {
     return(
   <div id="cardHolder" className="card-holder flex">
       {
-      hand[0].hand.filter(card => card !== null).map((card, index) => <UserCard  key="" index={index+1} card={card} /> )
+      hand[0].hand.filter(card => card !== null).map((card, index) => <UserCard  key={index} index={index+1} card={card} /> )
       }
    </div>
     )
