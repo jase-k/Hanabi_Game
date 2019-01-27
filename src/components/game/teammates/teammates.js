@@ -27,6 +27,7 @@ export default class Teammates extends React.Component {
   }
   render(){
     var teammatesArray = this.props.players.filter(player => player.name !== this.props.userName)
+    var teammate = teammatesArray[this.state.playerIndex]
     console.log("State of PlayerIndex", this.state.playerIndex);
     return(
       <div>
@@ -36,11 +37,11 @@ export default class Teammates extends React.Component {
           }
         </div>
 
-    {  this.state.seehints &&  <p>{teammatesArray[this.state.playerIndex].name }</p> }
+    {  this.state.seehints && teammate && <p>{teammate.name }</p> }
 
         <div className="flex" >
         {
-      this.state.seehints && teammatesArray[this.state.playerIndex].hand.map((card, index) => <TeammatesHints  key={index} card={card} index={index+1} />)
+      this.state.seehints && teammate && teammate.hand.map((card, index) => <TeammatesHints  key={index} card={card} index={index+1} />)
         }
       </div>
    </div>
