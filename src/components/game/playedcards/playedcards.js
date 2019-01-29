@@ -3,7 +3,7 @@ import React from 'react';
 export default class PlayedCards extends React.Component {
   render(){
     var array = this.props.playedCards.filter(card => card)
-    console.log(array)
+//    console.log(array)
     var black = Math.max.apply(Math, array.filter(object => object.color === 'black').map(function(o){return o.number}))
       if(black === -Infinity){black = 0}
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 //Components//
-
+import History from './history/history.js'
 import PlayedCards from './playedcards/playedcards.js'
 import Scoreboard from './scoreboard/scoreboard.js'
 import Teammates from './teammates/teammates.js'
@@ -20,11 +20,12 @@ export default class Game extends React.Component {
       livesLeft: 0,
       playingDeck: [],
       discardedCards: [],
-      playedcards: [],
+      playedCards: [],
       players: [{"name": "Jase Kraft", "active": false}],
       userName: "Jase Kraft", //This is Set by the Browser
       startGameClass: "game-init",
       gameClass: false,
+      previousPlays: [],
     };
     this.startNewGame = this.startNewGame.bind(this);
     this.setUserName = this.setUserName.bind(this);
@@ -33,6 +34,7 @@ export default class Game extends React.Component {
     this.giveHint = this.giveHint.bind(this);
     this.playCard = this.playCard.bind(this);
     this.getUpdate = this.getUpdate.bind(this);
+    this.toggleHide = this.toggleHide.bind(this);
   }
   setUserName(name){
     this.setState({userName: name})
@@ -61,9 +63,10 @@ export default class Game extends React.Component {
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards,
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
+                  previousPlays: xhr.response.messages,
               })
 
             }
@@ -100,9 +103,10 @@ export default class Game extends React.Component {
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards.filter(object => object !== null),
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
+                  previousPlays: xhr.response.messages,
               })
             }
         }
@@ -123,16 +127,16 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
-            alert(xhr.response.message)
               this.setState({
                   id: xhr.response.id,
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards,
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
+                  previousPlays: xhr.response.messages,
               })
             }
         }
@@ -153,16 +157,16 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
-            alert(xhr.response.message)
               this.setState({
                   id: xhr.response.id,
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards,
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
+                  previousPlays: xhr.response.messages,
               })
             }
         }
@@ -194,9 +198,10 @@ export default class Game extends React.Component {
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards,
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
+                  previousPlays: xhr.response.messages,
               })
             }
         }
@@ -220,19 +225,23 @@ export default class Game extends React.Component {
                   gameClass: true,
                   id: xhr.response.id,
                   score: xhr.response.score,
-                  hintsLeft: xhr.response.hintsLeft,
+                  hintsLeft:  xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards,
-                  playedcards: xhr.response.playedCards.filter(object => object !== null),
+                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
+                  playedCards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
-
+                  previousPlays: xhr.response.messages
               })
             }
         }
     xhr.open('GET', url)
     xhr.send()
   }Jase
+  toggleHide(target){
+    console.log("Button Clicked", target)
+    target.classList.add("hide")
+  }
   render(){
 
   var active = true
@@ -251,9 +260,10 @@ export default class Game extends React.Component {
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
       {this.state.gameClass && active && <Play playCard={this.playCard} giveHint={this.giveHint} hints={this.state.hintsLeft} discard={this.discardCard} players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <Scoreboard deckLeft={this.state.playingDeck.length} game={this.state} update={this.getUpdate} /> }
+      {this.state.gameClass && <History messages={this.state.previousPlays} handleClick={this.toggleHide}/> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
-      {this.state.gameClass && <PlayedCards playedCards={this.state.playedcards}/> }
+      {this.state.gameClass && <PlayedCards playedCards={this.state.playedCards}/> }
       </div>
     )
   }

@@ -92,6 +92,10 @@ input {
   min-width: 500px;
   border: 5px solid red;
 }
+.message{
+  height: 1.2rem;
+  margin: auto;
+}
 .name{
   width: 100%;
   background-color: aqua;
@@ -153,6 +157,11 @@ input {
 }
 .teammates_hint_card h3{
   margin: 3px auto;
+}
+.update_button{
+  width: 20%;
+  margin: 5px;
+  background-color: red;
 }
 .vertical_flex{
   display: flex;

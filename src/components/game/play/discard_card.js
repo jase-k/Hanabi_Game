@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class DiscardCard extends React.Component{
   render(){
-    console.log("DiscardCard Props", this.props)
+  //  console.log("DiscardCard Props", this.props)
     return(
       <div>
         <h3>Pick the Card to Discard</h3>

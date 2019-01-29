@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class UserCard extends React.Component{
   render(){
-console.log("UserCard props:", this.props)
+// console.log("UserCard props:", this.props)
     return(
     <div  className="card">
       <h3>

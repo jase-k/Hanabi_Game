@@ -5,7 +5,7 @@ export default class Scoreboard extends React.Component {
     setInterval(this.props.update, 5000);
   }
   render(){
-    console.log("props:",this.props.game)
+  //  console.log("props:",this.props.game)
     return(
       <div className="scoreboard flex">
         <div className="vertical_flex">
