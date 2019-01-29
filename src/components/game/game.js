@@ -60,7 +60,7 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
+                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards,
                   players: xhr.response.players,
@@ -99,7 +99,7 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
+                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards.filter(object => object !== null),
                   players: xhr.response.players,
@@ -123,12 +123,13 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
+            alert(xhr.response.message)
               this.setState({
                   id: xhr.response.id,
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
+                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards,
                   players: xhr.response.players,
@@ -152,12 +153,13 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log(xhr.response)
+            alert(xhr.response.message)
               this.setState({
                   id: xhr.response.id,
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
+                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards,
                   players: xhr.response.players,
@@ -191,7 +193,7 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
+                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards,
                   playedcards: xhr.response.playedCards,
                   players: xhr.response.players,
