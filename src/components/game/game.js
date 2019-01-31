@@ -1,13 +1,14 @@
 import React from 'react';
 
 //Components//
-import History from './history/history.js'
-import PlayedCards from './playedcards/playedcards.js'
-import Scoreboard from './scoreboard/scoreboard.js'
-import Teammates from './teammates/teammates.js'
-import User from './user/user.js'
-import StartGame from '../start/startgame'
-import Play from './play/play.js'
+import GameOver from './gameover/gameover.js';
+import History from './history/history.js';
+import PlayedCards from './playedcards/playedcards.js';
+import Scoreboard from './scoreboard/scoreboard.js';
+import Teammates from './teammates/teammates.js';
+import User from './user/user.js';
+import StartGame from '../start/startgame';
+import Play from './play/play.js';
 
 export default class Game extends React.Component {
   constructor(props){
@@ -26,6 +27,7 @@ export default class Game extends React.Component {
       startGameClass: "game-init",
       gameClass: false,
       previousPlays: [],
+      won: null, 
     };
     this.startNewGame = this.startNewGame.bind(this);
     this.setUserName = this.setUserName.bind(this);
@@ -264,6 +266,7 @@ export default class Game extends React.Component {
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
       {this.state.gameClass && <PlayedCards playedCards={this.state.playedCards}/> }
+      <GameOver />
       </div>
     )
   }
