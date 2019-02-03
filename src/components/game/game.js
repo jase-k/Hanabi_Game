@@ -27,7 +27,7 @@ export default class Game extends React.Component {
       startGameClass: "game-init",
       gameClass: false,
       previousPlays: [],
-      won: null, 
+      gameOver: false,
     };
     this.startNewGame = this.startNewGame.bind(this);
     this.setUserName = this.setUserName.bind(this);
@@ -266,7 +266,7 @@ export default class Game extends React.Component {
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
       {this.state.gameClass && <PlayedCards playedCards={this.state.playedCards}/> }
-      <GameOver />
+      {this.state.gameOver && <GameOver /> }
       </div>
     )
   }

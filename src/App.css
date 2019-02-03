@@ -227,6 +227,15 @@ input {
   align-content: space-around;
 }
 
+.winner{
+  background-color: #1f1616;
+}
+
+.winner p{
+  color: white;
+  font-size: 50px;
+}
+
 .writing {
  line-height: 1.1em;
 }
