@@ -1,13 +1,13 @@
 {
-  "main.css": "/Hanabi_Game/static/css/main.ea235095.chunk.css",
-  "main.js": "/Hanabi_Game/static/js/main.c5b4ccd2.chunk.js",
-  "main.js.map": "/Hanabi_Game/static/js/main.c5b4ccd2.chunk.js.map",
+  "main.css": "/Hanabi_Game/static/css/main.4fa0cf1e.chunk.css",
+  "main.js": "/Hanabi_Game/static/js/main.d9e54f90.chunk.js",
+  "main.js.map": "/Hanabi_Game/static/js/main.d9e54f90.chunk.js.map",
   "static/js/1.07140812.chunk.js": "/Hanabi_Game/static/js/1.07140812.chunk.js",
   "static/js/1.07140812.chunk.js.map": "/Hanabi_Game/static/js/1.07140812.chunk.js.map",
   "runtime~main.js": "/Hanabi_Game/static/js/runtime~main.44fe9ec3.js",
   "runtime~main.js.map": "/Hanabi_Game/static/js/runtime~main.44fe9ec3.js.map",
-  "static/css/main.ea235095.chunk.css.map": "/Hanabi_Game/static/css/main.ea235095.chunk.css.map",
+  "static/css/main.4fa0cf1e.chunk.css.map": "/Hanabi_Game/static/css/main.4fa0cf1e.chunk.css.map",
   "index.html": "/Hanabi_Game/index.html",
-  "precache-manifest.69d9a0bd23de7854830d2b3d9d5f226a.js": "/Hanabi_Game/precache-manifest.69d9a0bd23de7854830d2b3d9d5f226a.js",
+  "precache-manifest.cd1b57d7db6747381d9478c98067f8d8.js": "/Hanabi_Game/precache-manifest.cd1b57d7db6747381d9478c98067f8d8.js",
   "service-worker.js": "/Hanabi_Game/service-worker.js"
 }
