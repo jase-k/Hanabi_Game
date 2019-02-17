@@ -37,6 +37,7 @@ export default class Game extends React.Component {
     this.playCard = this.playCard.bind(this);
     this.getUpdate = this.getUpdate.bind(this);
     this.toggleHide = this.toggleHide.bind(this);
+    this.showPlayerOrder = this.showPlayerOrder.bind(this);
   }
   setUserName(name){
     this.setState({userName: name})
@@ -240,10 +241,15 @@ export default class Game extends React.Component {
         }
     xhr.open('GET', url)
     xhr.send()
-  }Jase
+  }
   toggleHide(target){
     console.log("Button Clicked", target)
     target.classList.add("hide")
+  }
+  showPlayerOrder(){
+    alert(`Player Order:
+      ${this.state.players.map(player => player.name+'  =>  ')}
+    `)
   }
   render(){
 
@@ -259,7 +265,11 @@ export default class Game extends React.Component {
   console.log("Active", active)
     return(
       <div className="game-container">
-        Game Id = {this.state.id}
+      { this.state.gameClass &&
+        <div class="flex">
+          <div class="game_id">Game Id = {this.state.id}</div>
+          <div class="help" onClick={this.showPlayerOrder}>?</div>
+        </div> }
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
       {this.state.gameClass && active && !this.state.gameOver && <Play playCard={this.playCard} giveHint={this.giveHint} hints={this.state.hintsLeft} discard={this.discardCard} players={this.state.players.filter(player => player.name !== this.state.userName)} userName={this.state.userName} /> }
       {this.state.gameOver && <GameOver playByPlay={this.state.messages} /> }
