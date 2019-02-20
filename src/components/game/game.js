@@ -28,6 +28,7 @@ export default class Game extends React.Component {
       gameClass: false,
       previousPlays: [],
       gameOver: false,
+      gameProgress: "starting",
     };
     this.startNewGame = this.startNewGame.bind(this);
     this.setUserName = this.setUserName.bind(this);
@@ -230,13 +231,13 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft:  xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
-                  playedCards: xhr.response.playedCards.filter(object => object !== null),
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedCards: xhr.response.playedCards,
                   players: xhr.response.players,
                   previousPlays: xhr.response.messages,
-                  gameOver: xhr.response.playedCards.filter(object => object !== null).length > 24 ? true : false
-              })
+                  gameProgress: xhr.response.gameProgress
+                })
             }
         }
     xhr.open('GET', url)
