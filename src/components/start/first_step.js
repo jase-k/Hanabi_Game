@@ -2,7 +2,6 @@ import React from 'react';
 
 export default class FirstStep extends React.Component {
   render(){
-    console.log("FirstStep Props:",this.props)
     return(
       <div className="vertical_flex">
        <div className='center'>

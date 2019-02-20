@@ -97,7 +97,6 @@ export default class Game extends React.Component {
             alert(xhr.response.message);
             return;
           }
-            var game = xhr.response
               this.setState({
                   userName: name.value,
                   startGameClass: "hide",
@@ -218,12 +217,10 @@ export default class Game extends React.Component {
     var url = 'https://puddle-catcher.glitch.me/game/'
         url += this.state.id
         url += "/"+this.state.userName
-    console.log(url)
     xhr.responseType ="json";
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
-            console.log(xhr.response)
-            var game = xhr.response
+            console.log("Response:", xhr.response)
               this.setState({
                   startGameClass: "hide",
                   gameClass: true,
@@ -262,18 +259,17 @@ export default class Game extends React.Component {
   if(this.state.players[index]){
     if(!this.state.players[index].active){ active = false}
 }
-  console.log("Index", index)
-  console.log("Active", active)
+
     return(
       <div className="game-container">
       { this.state.gameClass &&
-        <div class="flex">
-          <div class="game_id">Game Id = {this.state.id}</div>
-          <div class="help" onClick={this.showPlayerOrder}>?</div>
+        <div className="flex">
+          <div className="game_id">Game Id = {this.state.id}</div>
+          <div className="help" onClick={this.showPlayerOrder}>?</div>
         </div> }
       {!this.state.gameClass && <StartGame joingame={this.joinGame} newgame={this.startNewGame} /> }
       {this.state.gameClass && active && !this.state.gameOver && <Play playCard={this.playCard} giveHint={this.giveHint} hints={this.state.hintsLeft} discard={this.discardCard} players={this.state.players.filter(player => player.name !== this.state.userName)} userName={this.state.userName} /> }
-      {this.state.gameOver && <GameOver playByPlay={this.state.messages} /> }
+       <GameOver playByPlay={this.state.messages} gameProgress={this.state.gameProgress} />
       {this.state.gameClass && <Scoreboard deckLeft={this.state.playingDeck.length} game={this.state} update={this.getUpdate} /> }
       {this.state.gameClass && !this.state.gameOver && <History messages={this.state.previousPlays} handleClick={this.toggleHide}/> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }

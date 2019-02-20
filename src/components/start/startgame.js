@@ -11,13 +11,11 @@ export default class StartGame extends React.Component {
     this.toggleHide = this.toggleHide.bind(this)
   }
   toggleHide(){
-    console.log("toggleHide")
       this.setState({
         hide: false,
     })
   }
   render(){
-    console.log("StartGame Props", this.props)
     return(
     <div id="game-init" className="game-init">
       {this.state.hide && <FirstStep hide={this.toggleHide} handleJoinGame={this.props.joingame} /> }
