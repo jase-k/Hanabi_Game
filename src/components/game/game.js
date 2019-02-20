@@ -221,19 +221,21 @@ export default class Game extends React.Component {
     xhr.onreadystatechange = () =>{
         if(xhr.readyState === XMLHttpRequest.DONE){
             console.log("Response:", xhr.response)
+            var res = xhr.response
               this.setState({
                   startGameClass: "hide",
                   gameClass: true,
-                  id: xhr.response.id,
-                  score: xhr.response.score,
-                  hintsLeft:  xhr.response.hintsLeft,
-                  livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck,
-                  discardedCards: xhr.response.discardedCards,
-                  playedCards: xhr.response.playedCards,
-                  players: xhr.response.players,
-                  previousPlays: xhr.response.messages,
-                  gameProgress: xhr.response.gameProgress
+                  id:res.id,
+                  score: res.score,
+                  hintsLeft:  res.hintsLeft,
+                  livesLeft: res.livesLeft,
+                  playingDeck: res.playingDeck,
+                  discardedCards: res.discardedCards,
+                  playedCards: res.playedCards,
+                  players: res.players,
+                  previousPlays: res.messages,
+                  gameProgress: res.gameProgress,
+                  gameOver: res.gameProgress === "loser" || res.gameProgress === "won" ? false : true
                 })
             }
         }
@@ -259,6 +261,7 @@ export default class Game extends React.Component {
   if(this.state.players[index]){
     if(!this.state.players[index].active){ active = false}
 }
+console.log("current state", this.state)
 
     return(
       <div className="game-container">
@@ -274,7 +277,7 @@ export default class Game extends React.Component {
       {this.state.gameClass && !this.state.gameOver && <History messages={this.state.previousPlays} handleClick={this.toggleHide}/> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
-      {this.state.gameClass && <PlayedCards playedCards={this.state.playedCards}/> }
+      {this.state.gameClass && this.state.gameOver && <PlayedCards playedCards={this.state.playedCards}/> }
       </div>
     )
   }
