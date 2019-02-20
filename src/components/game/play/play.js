@@ -32,7 +32,6 @@ export default class Play extends React.Component {
   }
 }
   render(){
-    console.log("Play's Props:", this.props)
     return(
       <div className="flex">
         {!this.state.give_hint && !this.state.play_card && <button id="discard_card" onClick={(e) => this.showOptions(e)}>Discard Card</button> }
