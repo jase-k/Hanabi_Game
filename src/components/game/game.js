@@ -235,7 +235,7 @@ export default class Game extends React.Component {
                   players: res.players,
                   previousPlays: res.messages,
                   gameProgress: res.gameProgress,
-                  gameOver: res.gameProgress === "loser" || res.gameProgress === "won" ? false : true
+                  gameOver: res.gameProgress === "loser" || res.gameProgress === "won" ? true : false
                 })
             }
         }
