@@ -277,7 +277,7 @@ console.log("current state", this.state)
       {this.state.gameClass && !this.state.gameOver && <History messages={this.state.previousPlays} handleClick={this.toggleHide}/> }
       {this.state.gameClass && <Teammates players={this.state.players} userName={this.state.userName} /> }
       {this.state.gameClass && <User players={this.state.players} userName={this.state.userName}/> }
-      {this.state.gameClass && !this.state.gameOver && <PlayedCards playedCards={this.state.playedCards}/> }
+      {this.state.gameClass && <PlayedCards playedCards={this.state.playedCards}/> }
       </div>
     )
   }
