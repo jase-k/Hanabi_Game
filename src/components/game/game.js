@@ -200,9 +200,9 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
-                  playedCards: xhr.response.playedCards.filter(object => object !== null),
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedCards: xhr.response.playedCards,
                   players: xhr.response.players,
                   previousPlays: xhr.response.messages,
               })
@@ -235,7 +235,7 @@ export default class Game extends React.Component {
                   players: res.players,
                   previousPlays: res.messages,
                   gameProgress: res.gameProgress,
-                  gameOver: res.gameProgress === "loser" || res.gameProgress === "won" ? true : false
+                  gameOver: (res.gameProgress === "lost" || res.gameProgress === "won") ? true : false
                 })
             }
         }
