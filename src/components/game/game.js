@@ -7,8 +7,11 @@ import PlayedCards from './playedcards/playedcards.js';
 import Scoreboard from './scoreboard/scoreboard.js';
 import Teammates from './teammates/teammates.js';
 import User from './user/user.js';
-import StartGame from '../start/startgame';
+import StartGame from '../start/startgame.js';
 import Play from './play/play.js';
+
+//Import Helpers
+import Utils from '../../utils/utils.js'
 
 export default class Game extends React.Component {
   constructor(props){
@@ -108,7 +111,7 @@ export default class Game extends React.Component {
                   playingDeck: xhr.response.playingDeck.filter(object => object !== null),
                   discardedCards: xhr.response.discardedCards.filter(object => object !== null),
                   playedCards: xhr.response.playedCards.filter(object => object !== null),
-                  players: xhr.response.players,
+                  players: Utils.reorderPlayers(xhr.response.players, name.value),
                   previousPlays: xhr.response.messages,
               })
             }
@@ -135,16 +138,18 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
-                  playedCards: xhr.response.playedCards.filter(object => object !== null),
-                  players: xhr.response.players,
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedCards: xhr.response.playedCards,
+                  players: Utils.reorderPlayers(xhr.response.players, this.state.userName),
                   previousPlays: xhr.response.messages,
               })
             }
         }
     xhr.open('GET', url)
     xhr.send()
+
+    Utils.removePersonalNotes(cardIndex)
   }
   playCard(){
     var cardIndex = document.getElementById('playcard_option').value
@@ -165,16 +170,18 @@ export default class Game extends React.Component {
                   score: xhr.response.score,
                   hintsLeft: xhr.response.hintsLeft,
                   livesLeft: xhr.response.livesLeft,
-                  playingDeck: xhr.response.playingDeck.filter(object => object !== null),
-                  discardedCards: xhr.response.discardedCards.filter(object => object !== null),
-                  playedCards: xhr.response.playedCards.filter(object => object !== null),
-                  players: xhr.response.players,
+                  playingDeck: xhr.response.playingDeck,
+                  discardedCards: xhr.response.discardedCards,
+                  playedCards: xhr.response.playedCards,
+                  players: Utils.reorderPlayers(xhr.response.players, this.state.userName),
                   previousPlays: xhr.response.messages,
               })
             }
         }
     xhr.open('GET', url)
     xhr.send()
+
+    Utils.removePersonalNotes(cardIndex)
   }
   giveHint(){
     const playerSelect = document.getElementById('player');
@@ -203,7 +210,7 @@ export default class Game extends React.Component {
                   playingDeck: xhr.response.playingDeck,
                   discardedCards: xhr.response.discardedCards,
                   playedCards: xhr.response.playedCards,
-                  players: xhr.response.players,
+                  players: Utils.reorderPlayers(xhr.response.players, this.state.userName),
                   previousPlays: xhr.response.messages,
               })
             }
@@ -232,7 +239,7 @@ export default class Game extends React.Component {
                   playingDeck: res.playingDeck,
                   discardedCards: res.discardedCards,
                   playedCards: res.playedCards,
-                  players: res.players,
+                  players: Utils.reorderPlayers(res.players, this.state.userName),
                   previousPlays: res.messages,
                   gameProgress: res.gameProgress,
                   gameOver: (res.gameProgress === "lost" || res.gameProgress === "won") ? true : false

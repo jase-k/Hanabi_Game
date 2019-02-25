@@ -20,7 +20,7 @@ export default class UserCard extends React.Component{
         <h4>
           Personal Notes
         </h4>
-        <div contentEditable= "true">
+        <div contentEditable= "true" className = "player_notes">
         </div>
       </div>
     </div>

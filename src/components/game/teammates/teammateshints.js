@@ -3,7 +3,7 @@ import React from 'react';
 export default class TeammatesHints extends React.Component{
   render(){
 
-    console.log("Teammates Hints Props:", this.props)
+//    console.log("Teammates Hints Props:", this.props)
 
     return(
     <div  className="teammates_hint_card">
