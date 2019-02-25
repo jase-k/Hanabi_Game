@@ -5,8 +5,6 @@ https://jase-k.github.io/Hanabi_Game/
 ## Built With:
 -React.js
 
--Express.js
-
 # Components: 
 
 ## game/:
