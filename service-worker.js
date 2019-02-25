@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Hanabi_Game/precache-manifest.c390de975b66b75db0c40a0210f80dac.js"
+  "/Hanabi_Game/precache-manifest.8cf1b65e85ff1302ea38ee2861e0d69a.js"
 );
 
 workbox.clientsClaim();
