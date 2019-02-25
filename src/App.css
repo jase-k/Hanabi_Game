@@ -265,6 +265,35 @@ input {
     flex-direction: column;
 }
 
+#instructions{
+  text-align: center;
+  margin-top: 50px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#instructions h3{
+  border-top: 5px dashed red;
+  border-bottom: 5px dashed red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+
+#instructions h4{
+  font-size: 1.15rem;
+}
+
+#instructions h5{
+  font-size: 1rem;
+}
+
+#instructions p{
+  font-size: 0.85rem;
+}
+
 #root{
   width: 100%;
 }
